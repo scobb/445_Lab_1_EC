@@ -25,10 +25,43 @@
 
 #include <stdio.h>
 #include <stdint.h> // C99 variable types
+#include "UART.h"
+#include "inc/tm4c123gh6pm.h"
+#include "PLL.h"
 void Output_Init(void);
+float T; // temperature in C
+uint32_t N; // 12-bit ADC value
+void test_1(void){
+	 for(N=0; N<4096; N++){
+	     T = 10.0+ 0.009768*N;
+	 }
+} 
+void Test2(void){
+ for(N=0; N<4096; N++){
+ T = 1000 + (125*N+64)>>7;
+	}
+ }
 
-int main(void){ int32_t i,n;
-  Output_Init();              // initialize output device
-	printf("Hello world\n");
+// Initialize SysTick with busy wait running at bus clock.
+void SysTick_Init(void){
+  NVIC_ST_CTRL_R = 0;               // disable SysTick during setup
+  NVIC_ST_RELOAD_R = 0x00FFFFFF;    // maximum reload value
+  NVIC_ST_CURRENT_R = 0;            // any write to current clears it
+  NVIC_ST_CTRL_R = 0x05;            // enable SysTick with core clock
+  
+}
+int main(void){
+  PLL_Init();                      // bus clock at 80 MHz
+  //Output_Init();              // initialize output device
+		
+	SysTick_Init();
+	//printf("Hello world\n");
+	//printf("Running test 1...\n");
 	
+  unsigned long before = NVIC_ST_CURRENT_R;
+	test_1();
+  unsigned long elapsed = (before-NVIC_ST_CURRENT_R)&0x00FFFFFF;
+	int x = 5;
+	//printf("Test one complete\n");
+	//printf(" in %lu ms.\n", elapsed);
 }

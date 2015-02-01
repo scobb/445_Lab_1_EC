@@ -4,46 +4,33 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 C:\Users\scobb_000\Documents\445L\Lab1_EC\printf.uvproj
-Project File Date:  01/27/2015
+Project File Date:  01/29/2015
 
 <h2>Output:</h2>
-Rebuild target 'printf'
-assembling startup.s...
-compiling UART.c...
+Build target 'printf'
 compiling main.c...
-main.c(30): warning:  #177-D: variable "i" was declared but never referenced
-  int main(void){ int32_t i,n;
-main.c(30): warning:  #177-D: variable "n" was declared but never referenced
-  int main(void){ int32_t i,n;
-main.c: 2 warnings, 0 errors
-compiling version_1.c...
-version_1.c(15): warning:  #1-D: last line of file ends without a newline
-   }
-version_1.c: 1 warning, 0 errors
-assembling version_3.s...
-version_3.s(24): warning: A1581W: Added 2 bytes of padding at address 0x32
-assembling version_4.s...
-version_4.s(24): warning: A1581W: Added 2 bytes of padding at address 0x32
+main.c(64): warning:  #177-D: variable "x" was declared but never referenced
+        int x = 5;
+main.c: 1 warning, 0 errors
 linking...
-Program Size: Code=1024 RO-data=32 RW-data=4 ZI-data=1028  
-".\printf.axf" - 0 Error(s), 5 Warning(s).
+Program Size: Code=2052 RO-data=32 RW-data=8 ZI-data=1024  
+".\printf.axf" - 0 Error(s), 1 Warning(s).
 Load "C:\\Users\\scobb_000\\Documents\\445L\\Lab1_EC\\printf.axf" 
 Connecting: Mode=JTAG, Speed=1000000Hz
 Erase Done.
 Programming Done.
 Verify OK.
-uld not load file 'C:\Users\scobb_000\Documents\445L\Lab1_EC\printf.axf'
-).
-Target not created
-
-version_1.c(10): warning:  #1-D: last line of file ends without a newline
-  } 
-version_1.c: 1 warning, 0 errors
-compiling version_2.c...
-version_2.c(9): warning:  #1-D: last line of file ends without a newline
-   }
-version_2.c: 1 warning, 0 errors
-".\printf.axf" - 8 Error(s), 4 Warning(s).
-Target not created
-Warning(s).
+</pre>
+</body>
+</html>
+ opcode 'VLDR.F32', maybe wrong target CPU?
+Test3.s(15): error: A1854E: Unknown opcode 'VMOV.F32', maybe wrong target CPU?
+Test3.s(16): error: A1854E: Unknown opcode 'VCVT.F32.U32', maybe wrong target CPU?
+Test3.s(17): error: A1854E: Unknown opcode 'VMUL.F32', maybe wrong target CPU?
+Test3.s(18): error: A1854E: Unknown opcode 'VADD.F32', maybe wrong target CPU?
+Test3.s(19): error: A1854E: Unknown opcode 'VSTR.F32', maybe wrong target CPU?
+assembling Test4.s...
+Test4.s(24): warning: A1581W: Added 2 bytes of padding at address 0x32
+compiling PLL.c...
+".\printf.axf" - 7 Error(s), 3 Warning(s).
 Target not created
