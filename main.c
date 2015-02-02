@@ -55,7 +55,7 @@ int main(void){
   //Output_Init();              // initialize output device
 		
 	SysTick_Init();
-	//printf("Hello world\n");
+	printf("Hello world\n");
 	//printf("Running test 1...\n");
 	
   unsigned long before = NVIC_ST_CURRENT_R;
