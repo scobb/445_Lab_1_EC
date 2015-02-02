@@ -61,4 +61,14 @@ int main(void){
 	elapsed = NVIC_ST_CURRENT_R / 12500000.0;
 	printf("Test two complete");
 	printf(" in %f ms.\n", elapsed);
+	NVIC_ST_CURRENT_R = 0;
+	Test3();
+	elapsed = NVIC_ST_CURRENT_R / 12500000.0;
+	printf("Test three complete");
+	printf(" in %f ms.\n", elapsed);
+	NVIC_ST_CURRENT_R = 0;
+	Test4();
+	elapsed = NVIC_ST_CURRENT_R / 12500000.0;
+	printf("Test four complete");
+	printf(" in %f ms.\n", elapsed);
 }

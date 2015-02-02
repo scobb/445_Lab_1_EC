@@ -4,6 +4,7 @@ T SPACE 4
 N SPACE 4
  AREA |.text|, CODE, READONLY, ALIGN=2
  THUMB
+ global Test4
 Test4 PUSH {R4,R5,R6,LR}
  MOV R0,#0
  LDR R1,=N ;pointer to N
