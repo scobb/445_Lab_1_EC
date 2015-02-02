@@ -28,6 +28,7 @@
 #include "UART.h"
 #include "inc/tm4c123gh6pm.h"
 #include "PLL.h"
+#include "SysTick.h"
 void Output_Init(void);
 float T; // temperature in C
 uint32_t N; // 12-bit ADC value
@@ -42,26 +43,22 @@ void Test2(void){
 	}
  }
 
-// Initialize SysTick with busy wait running at bus clock.
-void SysTick_Init(void){
-  NVIC_ST_CTRL_R = 0;               // disable SysTick during setup
-  NVIC_ST_RELOAD_R = 0x00FFFFFF;    // maximum reload value
-  NVIC_ST_CURRENT_R = 0;            // any write to current clears it
-  NVIC_ST_CTRL_R = 0x05;            // enable SysTick with core clock
-  
-}
 int main(void){
-  PLL_Init();                      // bus clock at 80 MHz
-  //Output_Init();              // initialize output device
+  PLL_Init();    
+	SysTick_Init();                  // bus clock at 80 MHz
+  Output_Init();              // initialize output device
 		
-	SysTick_Init();
-	printf("Hello world\n");
-	//printf("Running test 1...\n");
-	
   unsigned long before = NVIC_ST_CURRENT_R;
+	printf("Hello world\n");
+	printf("Running test 1...\n");
+	NVIC_ST_CURRENT_R = 0;
 	test_1();
-  unsigned long elapsed = (before-NVIC_ST_CURRENT_R)&0x00FFFFFF;
-	int x = 5;
-	//printf("Test one complete\n");
-	//printf(" in %lu ms.\n", elapsed);
+  double elapsed = NVIC_ST_CURRENT_R / 12500000.0;
+	printf("Test one complete");
+	printf(" in %f ms.\n", elapsed);
+	NVIC_ST_CURRENT_R = 0;
+	Test2();
+	elapsed = NVIC_ST_CURRENT_R / 12500000.0;
+	printf("Test two complete");
+	printf(" in %f ms.\n", elapsed);
 }

@@ -4,3 +4,4 @@
 .\main.o: UART.h
 .\main.o: inc/tm4c123gh6pm.h
 .\main.o: PLL.h
+.\main.o: SysTick.h
