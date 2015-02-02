@@ -42,7 +42,6 @@ void Test2(void){
  T = 1000 + (125*N+64)>>7;
 	}
  }
-
 int main(void){
   PLL_Init();    
 	SysTick_Init();                  // bus clock at 80 MHz
@@ -50,25 +49,34 @@ int main(void){
 		
   unsigned long before = NVIC_ST_CURRENT_R;
 	printf("Hello world\n");
-	printf("Running test 1...\n");
+	printf("Running test 1, c floating point...\n");
 	NVIC_ST_CURRENT_R = 0;
 	test_1();
-  double elapsed = NVIC_ST_CURRENT_R / 12500000.0;
+  unsigned long elapsed = 0xFFFFFF - NVIC_ST_CURRENT_R;
 	printf("Test one complete");
-	printf(" in %f ms.\n", elapsed);
+	printf(" in %lu cycles.\n", elapsed);
+	printf("Running test 2, c fixed point...\n");
+	
 	NVIC_ST_CURRENT_R = 0;
 	Test2();
-	elapsed = NVIC_ST_CURRENT_R / 12500000.0;
+	elapsed = 0xFFFFFF - NVIC_ST_CURRENT_R;
+	
 	printf("Test two complete");
-	printf(" in %f ms.\n", elapsed);
+	printf(" in %lu cycles.\n", elapsed);
+	printf("Running test 3, assembly floating point...\n");
+	
 	NVIC_ST_CURRENT_R = 0;
 	Test3();
-	elapsed = NVIC_ST_CURRENT_R / 12500000.0;
+	elapsed = 0xFFFFFF - NVIC_ST_CURRENT_R;
+	
 	printf("Test three complete");
-	printf(" in %f ms.\n", elapsed);
+	printf(" in %lu cycles.\n", elapsed);
+	printf("Running test 4, assembly floating point...\n");
+	
 	NVIC_ST_CURRENT_R = 0;
 	Test4();
-	elapsed = NVIC_ST_CURRENT_R / 12500000.0;
+	elapsed = 0xFFFFFF - NVIC_ST_CURRENT_R;
+	
 	printf("Test four complete");
-	printf(" in %f ms.\n", elapsed);
+	printf(" in %lu cycles.\n", elapsed);
 }
