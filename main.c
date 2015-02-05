@@ -71,7 +71,7 @@ int main(void){
 	
 	printf("Test three complete");
 	printf(" in %lu cycles.\n", elapsed);
-	printf("Running test 4, assembly floating point...\n");
+	printf("Running test 4, assembly fixed point...\n");
 	
 	NVIC_ST_CURRENT_R = 0;
 	Test4();
